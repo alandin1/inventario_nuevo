@@ -119,6 +119,26 @@ pruebaAlmacen.agregarProducto(a2)
 pruebaAlmacen.agregarProducto(a3)
 pruebaAlmacen.insertarProducto(a4,1)
 console.log(pruebaAlmacen.agregarProducto())
-
 console.log(pruebaAlmacen.buscarProductoID(3))
 console.log(pruebaAlmacen.listarProductos())
+
+///
+
+var codigo = document.querySelector("#codigo").value
+var nombreProducto = document.querySelector("#producto").value
+var descripcion = document.querySelector("#descripcion").value
+var cantidad = Number(document.querySelector("#cantidad")).value
+var precio = Number(document.querySelector("#costo")).value
+var producto = new Producto(codigo, nombreProducto, descripcion, cantidad, precio)
+
+var almacen = new Almacen()
+var btnAgregar = document.querySelector("#btnAgregar")
+var btnCalcular = document.querySelector("#btnCalcular")
+var btnInsertar = document.querySelector("#btnInsertar")
+var btnBorrar = document.querySelector("#btnBorrar")
+var btnBuscar = document.querySelector("#btnBuscar")
+var btnListar= document.querySelector("#btnListar")
+
+btnAgregar.addEventListener("click", () => {
+    alert(almacen.agregarProducto(producto) + "se ha añadido al almacen.")
+})
