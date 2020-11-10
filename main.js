@@ -32,10 +32,10 @@ class Almacen {
             while(pod.siguiente !== null) {
                 pod = pod.siguiente 
             }
-                pod.siguiente = producto
-            }
-            this.size++
-            return Producto.producto
+            pod.siguiente = producto
+        }
+        this.size++
+        return producto.producto
             
     }
     
@@ -114,22 +114,17 @@ let a1 = new Producto(556,"agua","agua ciel", 8, 20)
 let a2 = new Producto(557,"coca","coca-cola ", 2, 20)
 let a3 = new Producto(558,"papas","sabritas", 2, 20)
 let a4 = new Producto(559,"fruta","manzana", 1, 20)
-pruebaAlmacen.agregarProducto(a1)
+console.log(a4)
+console.log(pruebaAlmacen.agregarProducto(a1))
 pruebaAlmacen.agregarProducto(a2)
 pruebaAlmacen.agregarProducto(a3)
 pruebaAlmacen.insertarProducto(a4,1)
-console.log(pruebaAlmacen.agregarProducto())
+
 console.log(pruebaAlmacen.buscarProductoID(3))
 console.log(pruebaAlmacen.listarProductos())
 
 ///
-
-var codigo = document.querySelector("#codigo").value
-var nombreProducto = document.querySelector("#producto").value
-var descripcion = document.querySelector("#descripcion").value
-var cantidad = Number(document.querySelector("#cantidad")).value
-var precio = Number(document.querySelector("#costo")).value
-var producto = new Producto(codigo, nombreProducto, descripcion, cantidad, precio)
+    
 
 var almacen = new Almacen()
 var btnAgregar = document.querySelector("#btnAgregar")
@@ -139,6 +134,58 @@ var btnBorrar = document.querySelector("#btnBorrar")
 var btnBuscar = document.querySelector("#btnBuscar")
 var btnListar= document.querySelector("#btnListar")
 
-btnAgregar.addEventListener("click", () => {
-    alert(almacen.agregarProducto(producto) + "se ha añadido al almacen.")
+let b1 = new Producto(556,"agua","agua ciel", 8, 20)
+let b2 = new Producto(557,"coca","coca-cola ", 2, 20)
+let b3 = new Producto(558,"papas","sabritas", 2, 20)
+let b4 = new Producto(559,"fruta","manzana", 1, 20)
+almacen.agregarProducto(b1)
+almacen.agregarProducto(b2)
+almacen.agregarProducto(b3)
+almacen.agregarProducto(b4)
+
+btnAgregar.addEventListener("click", () => { 
+    let codigo = document.querySelector("#codigo").value
+    let nombreProducto = document.querySelector("#nombre").value
+    let descripcion = document.querySelector("#descripcion").value
+    let cantidad = document.querySelector("#cantidad").value
+    let precio = document.querySelector("#costo").value
+    
+    let producto = new Producto(codigo, nombreProducto, descripcion, cantidad, precio)
+    alert(almacen.agregarProducto(producto) + " se ha añadido al almacen.")
+})
+
+btnCalcular.addEventListener("click", () => {
+    let codigo = document.querySelector("#codigo").value
+    let nombreProducto = document.querySelector("#nombre").value
+    let descripcion = document.querySelector("#descripcion").value
+    let cantidad = document.querySelector("#cantidad").value
+    let precio = document.querySelector("#costo").value
+
+    let producto = new Producto(codigo, nombreProducto, descripcion, cantidad, precio)
+    alert(producto.calcularPrecio())
+})
+btnInsertar.addEventListener("click", () => {
+    let codigo = document.querySelector("#codigo").value
+    let nombreProducto = document.querySelector("#nombre").value
+    let descripcion = document.querySelector("#descripcion").value
+    let cantidad = document.querySelector("#cantidad").value
+    let precio = document.querySelector("#costo").value
+    let posicion = document.querySelector("#posicion").value
+
+    let producto = new Producto(codigo, nombreProducto, descripcion, cantidad, precio)
+    alert(almacen.insertarProducto(producto, posicion))
+})
+btnBorrar.addEventListener("click", () => {
+    let codigo = document.querySelector("#codBorrar").value
+    alert(almacen.borrarProducto(codigo))
+})
+btnBuscar.addEventListener("click", () => {
+    let codigo = document.querySelector("#codBuscar").value
+    alert(almacen.buscarProductoID(codigo))
+})
+btnListar.addEventListener("click", () => {
+    let lista = document.querySelector("#lista1")
+    let nuevoProd = document.createElement("li")
+    nuevoProd.textContent = almacen.listarProductos()
+    lista.appendChild(nuevoProd)
 })
